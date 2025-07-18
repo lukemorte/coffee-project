@@ -1,11 +1,21 @@
-machine = [
-    {
-        "water": 500,
-        "milk": 300,
-        "coffee": 100,
-        "money": 0,
-    }
-]
+commands = {
+    "off": {
+        "command": "off",
+        "help": "Switch the Coffee machine to OFF state."
+    },
+    "report": {
+        "command": "report",
+        "help": "List machine's current resources.",
+    },
+}
+
+
+machine = {
+    "water": 500,
+    "milk": 300,
+    "coffee": 100,
+    "money": 0,
+}
 
 
 menu = {

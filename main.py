@@ -1,16 +1,37 @@
 # Coffee Project
 
+from coffee_data import commands
+from coffee_data import machine
+from coffee_data import menu
+
 
 # code
 
 
-# TODO: 1. program se zeptá: Co si dáte? (espreso, latte, cappucino)
+def clr():
+    print('\n' * 20)
+
+
+# DONE: 1. program se zeptá: Co si dáte? (espreso, latte, cappucino)
 # a) zadej, co chceš vyrobit
 # b) tento dotaz by se měl objevit pokaždé, když je akce dokončena (nápoj dokončen,
 # nebo pokud např. nebyl dostatek zdrojů)
 
+def ask_for_order():
+    options = " / ".join(menu.keys())
+    order = input(f"What would you like? ({options}): ")
 
-# TODO: 2. Vypni program skrytým příkazem "off"
+    allowed = []
+    for n in commands:
+        allowed.append(commands[n]["command"])
+
+    while order not in menu.keys() and order not in allowed:
+        print("Invalid option. Try again:")
+        order = input(f"What would you like? ({options}): ")
+    return order
+
+
+# DONE: 2. Vypni program skrytým příkazem "off"
 
 
 # TODO: 3.Zobraz stav
@@ -19,6 +40,14 @@
 # Milk: 50ml
 # Coffee: 76g
 # Money: $2.5
+
+
+def show_report():
+    print("Current machine's resources:\n")
+    for item in machine:
+        print(f"{item.capitalize()}: {machine[item]}")
+
+    print("\n")
 
 
 # TODO: 4. Kontrola, jestli je dostatek zdrojů
@@ -47,11 +76,14 @@
 # zdroje potřebné k výrobě
 # b) jakmile je nápoj hotov, vypiš hlášku, zde je váš ........., užijde si jej.
 
+clr()
+order = ""
 
-from coffee_data import machine
-from coffee_data import menu
+while order != commands['off']['command']:
+    order = ask_for_order()
+    if order == commands['report']['command']:
+        clr()
+        show_report()
 
-
-for key, value in menu.items():
-    print(value['price'])
-
+clr()
+print("The coffee machine is OFF.\n")
