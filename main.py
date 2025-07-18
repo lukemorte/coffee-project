@@ -43,6 +43,15 @@
 
 
 # TODO: 7. Vytvoř nápoj
-# a) Pokud zdroje na nápoj jsou k dispozici a transakce dopadla dobře, "vytvoří" se nápoj a zdroje se sníží o 
+# a) Pokud zdroje na nápoj jsou k dispozici a transakce dopadla dobře, "vytvoří" se nápoj a zdroje se sníží o
 # zdroje potřebné k výrobě
 # b) jakmile je nápoj hotov, vypiš hlášku, zde je váš ........., užijde si jej.
+
+
+from coffee_data import machine
+from coffee_data import menu
+
+
+for key, value in menu.items():
+    print(value['price'])
+
