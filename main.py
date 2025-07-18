@@ -34,7 +34,7 @@ def ask_for_order():
 # DONE: 2. Vypni program skrytým příkazem "off"
 
 
-# TODO: 3.Zobraz stav
+# DONE: 3.Zobraz stav
 # a) pokud je zadán příkaz "report", zobrazí se následující report:
 # Water: 100ml
 # Milk: 50ml
@@ -53,7 +53,27 @@ def show_report():
 # TODO: 4. Kontrola, jestli je dostatek zdrojů
 # a) když si uživatel vybere nápoj, program zjistí, jestli je dostatek zdrojů
 # b) pokud např. latte potřebuje 200ml vody a je k dispozici jen 100ml, tak to musí zahlásit, že není dostatek vody
-# c) to samé nastane u ostatních zdrojů
+# c) to samé nastane u ostatních zdrojů.
+# d) pokud není dostatek zdrojů, vrací se na bod 1
+
+
+def check_for_resources(order):
+    clr()
+    print(f"So you wanted {order}?")
+    print("You will need:\n")
+
+    is_order_possible = True
+    ingredients = menu[order]["ingredients"]
+
+    for item in ingredients:
+        str = f"{item.capitalize()}: {ingredients[item]}"
+        if ingredients[item] > machine[item]:
+            is_order_possible = False
+            str += f" (not enough {item}.)"
+        print(str)
+
+    print("\n")
+    return is_order_possible
 
 
 # TODO: 5. Proces placení mincemi
@@ -81,6 +101,10 @@ order = ""
 
 while order != commands['off']['command']:
     order = ask_for_order()
+
+    if order in menu.keys():
+        is_order_possible = check_for_resources(order)
+
     if order == commands['report']['command']:
         clr()
         show_report()
