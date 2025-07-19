@@ -61,6 +61,8 @@ def show_report():
 
 
 def check_for_resources(order):
+    """Kontroluje, jestli je v přístroji dostatek zdrojů a vrací na základě objednávky
+    True nebo False, jestli je s momentálním stavem zdrojů možné objednávku provést či nikoliv."""
     clr()
     print(f"So you wanted {order}?")
     print("You will need:\n")
@@ -80,6 +82,7 @@ def check_for_resources(order):
 
 
 def get_input_number(s):
+    """Vylepšený input, neustále nabízí input, dokut není zadána číselná hodnota int."""
     while True:
         n = input(s)
         try:
@@ -91,14 +94,22 @@ def get_input_number(s):
 
 
 def get_coins_number(coins):
+
+    """Vrací číselnou hodnotu na základě počtu jednotlivých mincí, které jsou uloženy
+    v globální proměnné coins"""
     return coins["quarters"] * 0.25 + coins["dimes"] * 0.10 + coins["nickles"] * 0.05 + coins["pennies"] * 0.01
 
 
 def show_current_coins(coins):
+
+    """jednoduchá funkce, která vypíše číselnou hodnotu v $ dle dictionary coins, 
+    ve kterém jsou uloženy jednotlivé mince"""
     print(f"Inserted: ${get_coins_number(coins):.2f}")
 
 
 def get_remain_coins(coins, p_price):
+
+    """vrací počet jednotlivých mincí ve formě dictionary coins, které zbyly po platbě"""
     sum = get_coins_number(coins)
     remain = (sum - p_price) * 100
 
