@@ -7,6 +7,10 @@ commands = {
         "command": "report",
         "help": "List machine's current resources.",
     },
+    "replenish": {
+        "command": "replenish",
+        "help": "Replenish the machine with resources."
+    }
 }
 
 
